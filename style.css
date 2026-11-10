@@ -1,0 +1,315 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f3f1e9;
+  color: #153c40;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  padding: 60px 8% 30px;
+}
+
+h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: normal;
+}
+
+p {
+  max-width: 650px;
+  line-height: 1.7;
+}
+
+.surtitre {
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+/* Navigation entre les chapitres. */
+#navigation-escales {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0 8% 25px;
+}
+
+#navigation-escales button {
+  padding: 10px 15px;
+  border: 1px solid #153c40;
+  border-radius: 4px;
+  background: transparent;
+  color: #153c40;
+  font: inherit;
+  cursor: pointer;
+}
+
+#navigation-escales button:hover,
+#navigation-escales button[aria-pressed="true"] {
+  background: #153c40;
+  color: white;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid #e49429;
+  outline-offset: 3px;
+}
+
+/* Carte à gauche et récit à droite. */
+.storymap {
+  display: grid;
+  grid-template-columns: minmax(0, 60%) minmax(0, 40%);
+  align-items: start;
+}
+
+.panneau-carte {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f3f1e9;
+}
+
+#carte {
+  flex: 1;
+  min-height: 0;
+  border: 1px solid #a8bcb0;
+}
+
+/* Légende. */
+.legende {
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  gap: 12px 20px;
+  padding: 15px 20px;
+  font-size: 14px;
+}
+
+.legende span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legende [hidden] {
+  display: none;
+}
+
+.trait {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 25px;
+  height: 4px;
+}
+
+.seine {
+  background: #164eaa;
+}
+
+.affluents {
+  background: #58a6cf;
+}
+
+.yonne {
+  background: #bf5b17;
+}
+
+.point {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #e49429;
+}
+
+.port {
+  background: #18754a;
+}
+
+.inondation {
+  height: 12px;
+  background: rgba(119, 64, 181, 0.6);
+  border: 1px solid #542080;
+}
+
+/* Légende des masses d’eau de l’estuaire. */
+.legende-estuaire {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 15px;
+}
+
+.secteur-ht01 {
+  height: 12px;
+  background: #218c74;
+}
+
+.secteur-ht02 {
+  height: 12px;
+  background: #168aad;
+}
+
+.secteur-ht03 {
+  height: 12px;
+  background: #6654b8;
+}
+
+#statut {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0 20px 20px;
+  font-size: 14px;
+}
+
+.maplibregl-popup-content {
+  color: #153c40;
+  font-family: Arial, sans-serif;
+}
+
+/* Chapitres du récit. */
+.recit {
+  min-width: 0;
+  border-left: 1px solid #cbd5cc;
+}
+
+.chapitre {
+  min-height: 90vh;
+  padding: 70px 12%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-bottom: 1px solid #cbd5cc;
+  border-left: 4px solid transparent;
+  overflow-wrap: anywhere;
+}
+
+.chapitre.actif {
+  border-left-color: #e49429;
+}
+
+.numero {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #58756b;
+}
+
+.chapitre.actif .numero {
+  color: #a65d00;
+}
+
+.chapitre h2 {
+  margin: 10px 0 20px;
+  font-family: Georgia, serif;
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: normal;
+}
+
+.chapitre a {
+  margin-top: 15px;
+  color: #276d61;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Encadrés explicatifs. */
+.encadre {
+  margin-top: 15px;
+  padding: 18px;
+  background: #e9e3f1;
+  border-left: 3px solid #7740b5;
+}
+
+.encadre h3 {
+  margin: 0 0 12px;
+  font-size: 16px;
+}
+
+.encadre p {
+  font-size: 13px;
+}
+
+.encadre p:last-child {
+  margin-bottom: 0;
+}
+
+.estuaire-info {
+  background: #e1eaf0;
+  border-left-color: #168aad;
+}
+
+/* Sources et méthode. */
+.credits {
+  padding: 50px 8%;
+  border-top: 1px solid #cbd5cc;
+  background: #e7e9df;
+  overflow-wrap: anywhere;
+}
+
+.credits h2 {
+  font-family: Georgia, serif;
+  font-size: 30px;
+  font-weight: normal;
+}
+
+.credits p,
+.credits li {
+  max-width: 850px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.credits ul {
+  padding-left: 20px;
+}
+
+.credits li {
+  margin-bottom: 15px;
+}
+
+.credits a {
+  color: #276d61;
+}
+
+/* Affichage sur petit écran. */
+@media (max-width: 800px) {
+  header {
+    padding-top: 35px;
+  }
+
+  .storymap {
+    display: block;
+  }
+
+  .panneau-carte {
+    height: 45vh;
+    z-index: 2;
+  }
+
+  .legende {
+    gap: 8px 12px;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  #statut {
+    padding: 0 12px 8px;
+    font-size: 12px;
+  }
+
+  .recit {
+    border-left: none;
+  }
+
+  .chapitre {
+    min-height: 65vh;
+    padding: 40px 8%;
+    scroll-margin-top: 45vh;
+  }
+}

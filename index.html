@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>La Seine — De la source à l’estuaire</title>
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/maplibre-gl@6.15.0/dist/maplibre-gl.css"
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body id="haut">
+  <header>
+    <p class="surtitre">UN RÉCIT CARTOGRAPHIQUE EN SIX ESCALES</p>
+
+    <h1>La Seine, de la source à l’estuaire</h1>
+
+    <p>
+      Des sources bourguignonnes à la Manche, suivons le fleuve
+      à travers ses paysages, ses villes et ses confluences.
+    </p>
+  </header>
+
+  <nav
+    id="navigation-escales"
+    aria-label="Choisir une escale"
+  ></nav>
+
+  <main class="storymap">
+    <aside class="panneau-carte" aria-label="Carte et légende">
+      <div
+        id="carte"
+        aria-label="Carte interactive de la Seine"
+      ></div>
+
+      <div class="legende" aria-label="Légende">
+        <span>
+          <i class="trait seine" aria-hidden="true"></i>
+          La Seine
+        </span>
+
+        <span>
+          <i class="trait affluents" aria-hidden="true"></i>
+          Les affluents
+        </span>
+
+        <span id="legende-yonne" hidden>
+          <i class="trait yonne" aria-hidden="true"></i>
+          L’Yonne
+        </span>
+
+        <span>
+          <i class="point" aria-hidden="true"></i>
+          Les escales
+        </span>
+
+        <span id="legende-inondation" hidden>
+          <i class="trait inondation" aria-hidden="true"></i>
+          Surface inondable — scénario moyen
+        </span>
+
+        <span id="legende-ports" hidden>
+          <i class="point port" aria-hidden="true"></i>
+          Repères portuaires
+        </span>
+
+        <div id="legende-estuaire" class="legende-estuaire" hidden>
+          <span>
+            <i class="trait secteur-ht01" aria-hidden="true"></i>
+            HT01
+          </span>
+
+          <span>
+            <i class="trait secteur-ht02" aria-hidden="true"></i>
+            HT02
+          </span>
+
+          <span>
+            <i class="trait secteur-ht03" aria-hidden="true"></i>
+            HT03
+          </span>
+        </div>
+      </div>
+
+      <p id="statut" role="status">Chargement des données…</p>
+    </aside>
+
+    <div class="recit">
+      <section class="chapitre" id="chapitre-1" data-ordre="1">
+        <p class="numero">ESCALE 01 · BOURGOGNE</p>
+
+        <h2>Source-Seine : le commencement</h2>
+
+        <p>
+          Notre parcours commence à Source-Seine, en Côte-d’Or.
+          Loin des quais parisiens, cette première escale invite
+          à découvrir les origines du fleuve.
+        </p>
+
+        <p>
+          Le site des sources appartient à la Ville de Paris
+          depuis 1864 : un lien ancien entre la capitale
+          et le territoire où naît la Seine.
+        </p>
+
+        <a
+          href="https://www.paris.fr/pages/5-choses-a-savoir-sur-les-sources-de-la-seine-28197"
+          target="_blank"
+          rel="noopener"
+        >Source : Ville de Paris ↗</a>
+      </section>
+
+      <section class="chapitre" id="chapitre-2" data-ordre="2">
+        <p class="numero">ESCALE 02 · CHAMPAGNE</p>
+
+        <h2>Troyes : vivre avec les crues</h2>
+
+        <p>
+          Autour de Troyes, la Seine traverse un territoire
+          concerné par les inondations.
+        </p>
+
+        <p>
+          Débordements des cours d’eau, ruissellement et remontées
+          de nappes sont différents mécanismes à comprendre pour
+          préparer les territoires.
+        </p>
+
+        <div class="encadre">
+          <h3>Que représente la surface violette ?</h3>
+
+          <p>
+            Elle montre les surfaces inondables de la Seine
+            pour le scénario de probabilité moyenne du TRI de Troyes.
+            Elle ne représente pas une inondation en cours.
+          </p>
+
+          <p>
+            Source : Géorisques, jeu « Zonages Inondation —
+            Rapportage 2020 », scénario 02Moy.
+            Les géométries ont été simplifiées avec une tolérance
+            de 5 mètres pour cette présentation web.
+            Cette couche ne constitue pas la mise à jour 2025.
+          </p>
+        </div>
+
+        <a
+          href="https://www.seinegrandslacs.fr/papi-de-troyes-et-du-bassin-de-la-seine-superieure"
+          target="_blank"
+          rel="noopener"
+        >Prévention : Seine Grands Lacs ↗</a>
+
+        <a
+          href="https://www.georisques.gouv.fr/donnees/bases-de-donnees/zonages-inondation-rapportage-2020"
+          target="_blank"
+          rel="noopener"
+        >Données cartographiques : Géorisques ↗</a>
+      </section>
+
+      <section class="chapitre" id="chapitre-3" data-ordre="3">
+        <p class="numero">ESCALE 03 · SEINE-ET-MARNE</p>
+
+        <h2>Montereau : la rencontre des eaux</h2>
+
+        <p>
+          À Montereau-Fault-Yonne, l’Yonne rejoint la Seine.
+          Cette confluence permet de lire le fleuve comme
+          un réseau reliant plusieurs territoires.
+        </p>
+
+        <p>
+          L’Yonne, la Marne et l’Oise font partie des principaux
+          affluents de la Seine. Dans ce chapitre, l’Yonne est
+          mise en évidence en orange foncé et la Seine reste
+          en bleu foncé : suis les deux tracés jusqu’à leur rencontre.
+        </p>
+
+        <a
+          href="https://www.eau-seine-normandie.fr/agence-de-leau/le-bassin-de-la-seine"
+          target="_blank"
+          rel="noopener"
+        >Source : Agence de l’eau Seine-Normandie ↗</a>
+      </section>
+
+      <section class="chapitre" id="chapitre-4" data-ordre="4">
+        <p class="numero">ESCALE 04 · ÎLE-DE-FRANCE</p>
+
+        <h2>Paris : le fleuve dans la métropole</h2>
+
+        <p>
+          Dans la capitale, la Seine est un paysage urbain,
+          mais aussi une voie de circulation.
+        </p>
+
+        <p>
+          Les ports de Paris, de Rouen et du Havre sont réunis
+          au sein de HAROPA PORT. Cette organisation relie
+          le territoire métropolitain à l’ouverture maritime.
+        </p>
+
+        <p>
+          Les points verts situent deux exemples du réseau portuaire
+          francilien : Gennevilliers, sur la Seine, et Bonneuil-sur-Marne,
+          sur la Marne. Clique sur chacun pour l’identifier.
+          Ces repères indicatifs ne délimitent pas les emprises portuaires.
+        </p>
+
+        <a
+          href="https://www.haropaport.com/fr/actualites/creation-du-grand-port-fluvio-maritime-de-laxe-seine"
+          target="_blank"
+          rel="noopener"
+        >Source : HAROPA PORT ↗</a>
+
+        <a
+          href="https://carte.cap.haropaport.com/fr/map-results"
+          target="_blank"
+          rel="noopener"
+        >Cartographie des installations portuaires ↗</a>
+      </section>
+
+      <section class="chapitre" id="chapitre-5" data-ordre="5">
+        <p class="numero">ESCALE 05 · NORMANDIE</p>
+
+        <h2>Rouen : déjà dans l’estuaire</h2>
+
+        <p>
+          À Rouen, notre parcours se trouve déjà dans l’estuaire.
+          Celui-ci commence en amont, au barrage de Poses,
+          et s’étend jusqu’à la baie de Seine.
+        </p>
+
+        <p>
+          L’influence de la marée invite à regarder autrement
+          cet espace de transition entre le fleuve et la mer.
+        </p>
+
+        <div class="encadre estuaire-info">
+          <h3>Lire les secteurs de l’estuaire</h3>
+
+          <p>
+            Les surfaces colorées représentent trois masses d’eau
+            de transition du référentiel Sandre, rapportage 2022 :
+            HT01, HT02 et HT03.
+            Clique sur une surface pour lire son nom.
+          </p>
+
+          <p>
+            Les couleurs distinguent des unités de suivi.
+            Elles ne représentent ni la qualité de l’eau,
+            ni une mesure de salinité.
+          </p>
+        </div>
+
+        <a
+          href="https://www.seine-aval.fr/question/fiche-estuaire/"
+          target="_blank"
+          rel="noopener"
+        >Source : GIP Seine-Aval ↗</a>
+
+        <a
+          href="https://id.eaufrance.fr/MasseDEauTransition_VRAP2022/HT01"
+          target="_blank"
+          rel="noopener"
+        >Référentiel : Sandre, fiche HT01 ↗</a>
+      </section>
+
+      <section class="chapitre" id="chapitre-6" data-ordre="6">
+        <p class="numero">ESCALE 06 · LA MANCHE</p>
+
+        <h2>Honfleur : l’ouverture sur la mer</h2>
+
+        <p>
+          Notre dernière escale se situe à Honfleur,
+          près de l’embouchure du fleuve.
+        </p>
+
+        <p>
+          D’Honfleur à la baie de Seine, la partie aval
+          de l’estuaire ouvre le parcours vers le milieu marin.
+          Le voyage permet ainsi de relier les sources,
+          les villes et l’estuaire dans une même lecture.
+        </p>
+
+        <p>
+          La surface bleu violet correspond à la masse d’eau HT03,
+          « Estuaire Seine Aval ». Son contour appartient au référentiel
+          de suivi des eaux : il ne délimite pas l’ensemble des milieux
+          naturels terrestres et marins de l’estuaire.
+        </p>
+
+        <a
+          href="https://www.seine-aval.fr/question/fiche-estuaire/"
+          target="_blank"
+          rel="noopener"
+        >Source : GIP Seine-Aval ↗</a>
+
+        <a
+          href="https://id.eaufrance.fr/MasseDEauTransition_VRAP2022/HT03"
+          target="_blank"
+          rel="noopener"
+        >Référentiel : Sandre, fiche HT03 ↗</a>
+      </section>
+    </div>
+  </main>
+
+  <footer class="credits">
+    <h2>Sources et méthode</h2>
+
+    <p>
+      Projet indépendant de découverte de la Seine,
+      de ses sources à son estuaire.
+    </p>
+
+    <ul>
+      <li>
+        <strong>Hydrographie :</strong>
+        BD TOPAGE, diffusée par le
+        <a
+          href="https://www.sandre.eaufrance.fr/"
+          target="_blank"
+          rel="noopener"
+        >Sandre</a>.
+        La carte présente la Seine et trois de ses principaux
+        affluents : l’Yonne, la Marne et l’Oise.
+      </li>
+
+      <li>
+        <strong>Surfaces inondables à Troyes :</strong>
+        <a
+          href="https://www.georisques.gouv.fr/donnees/bases-de-donnees/zonages-inondation-rapportage-2020"
+          target="_blank"
+          rel="noopener"
+        >Géorisques — rapportage 2020</a>,
+        scénario de probabilité moyenne, code 02Moy.
+        Géométries simplifiées avec une tolérance de 5 mètres.
+        Cette couche ne représente ni une inondation en cours,
+        ni la cartographie actualisée en 2025.
+      </li>
+
+      <li>
+        <strong>Escales :</strong>
+        points de repérage indicatifs créés pour le récit.
+      </li>
+
+      <li>
+        <strong>Repères portuaires :</strong>
+        points indicatifs numérisés dans QGIS sur le fond OpenStreetMap.
+        Identification des sites à partir de la
+        <a
+          href="https://carte.cap.haropaport.com/fr/map-results"
+          target="_blank"
+          rel="noopener"
+        >cartographie HAROPA PORT</a>.
+      </li>
+
+      <li>
+        <strong>Masses d’eau de transition :</strong>
+        référentiel Sandre, rapportage 2022, codes HT01, HT02 et HT03.
+        Les trois entités ont été réunies dans QGIS en conservant
+        leurs identifiants et leurs noms.
+        <a
+          href="https://id.eaufrance.fr/MasseDEauTransition_VRAP2022/HT01"
+          target="_blank"
+          rel="noopener"
+        >Fiche de référence HT01 ↗</a>
+      </li>
+
+      <li>
+        <strong>Fond cartographique :</strong>
+        © contributeurs
+        <a
+          href="https://www.openstreetmap.org/copyright"
+          target="_blank"
+          rel="noopener"
+        >OpenStreetMap</a>.
+        Affichage avec
+        <a
+          href="https://maplibre.org/"
+          target="_blank"
+          rel="noopener"
+        >MapLibre GL JS</a>.
+      </li>
+    </ul>
+
+    <p>
+      Les données ont été préparées dans QGIS et exportées
+      en GeoJSON. Cette présentation est destinée à une lecture
+      pédagogique ; pour une analyse détaillée du risque,
+      consulter les documents officiels.
+    </p>
+
+    <a href="#haut">Revenir en haut de la page ↑</a>
+  </footer>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

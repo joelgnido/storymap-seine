@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"name": "ports_paris",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "fid": 1, "nom": "Port de Gennevilliers", "cours_eau": "Seine", "source": "HAROPA PORT — https:\/\/carte.cap.haropaport.com\/fr\/map-results" }, "geometry": { "type": "Point", "coordinates": [ 2.271191815344207, 48.94538956721734 ] } },
+{ "type": "Feature", "properties": { "fid": 2, "nom": "Port de Bonneuil-sur-Marne", "cours_eau": "Marne", "source": "HAROPA PORT — https:\/\/carte.cap.haropaport.com\/fr\/map-results" }, "geometry": { "type": "Point", "coordinates": [ 2.48667146485148, 48.780587543131524 ] } }
+]
+}
